@@ -32,13 +32,3 @@ iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE
 ip link add bridge0 type bridge
 ip addr add 10.0.0.1/24 dev bridge0
 ip link set bridge0 up
-) 2>&1
-SCRIPT
-
-Vagrant.configure(2) do |config|
-	config.vm.box = 'puppetlabs/centos-7.0-64-nocm'
-	config.ssh.username = 'root'
-	config.ssh.password = 'puppet'
-	config.ssh.insert_key = 'true'
-	config.vm.provision 'shell', inline: $script
-end
